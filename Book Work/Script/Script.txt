@@ -1,0 +1,195 @@
+﻿TILESET
+--------------------
+Change snap mode to Grid snap because we know the exact resolution we want these tilesets to be.
+Snap each 16x16 section to desired location, once you have one singular 16x16 block done, save it as a new sprite.
+Naming tileset pieces is always a challenge, for help on naming your tilesets, visit out video tutorials located <here> . 
+
+
+Once you have a sprite dedicated for one of the tileset blocks, each sprite tile block will have a StaticBody2D node as a child.
+
+
+Once you have created the StaticBody2D child, create a CollisionShape2D as a child of StaticBody2D,
+We recommend renaming the CollisionShape2D to BodyCollider.
+
+
+Select your BodyCollider. In the Inspector, define “Shape” as new RectangleShape2D.
+This will be your collision body.
+
+
+As a built-in anti-frustration measure, we recommend making the Rectangle collision body slightly bigger than the
+actual tileset on the sides (See Figure x). This allows the player to move a little more towards the edge, without falling. 
+
+
+Once BodyCollider has been set up, hide the blue rectangle from view by pressing the OpenEye icon in your Scene Tree.
+
+Repeat this process for every single tile in the game by collapsing the Scene tree, and Duplicating your sprite
+(with all its children). The only thing you need to change is the Tile Sprite, renaming the node to fit the tile it
+represents, and possibly the BodyCollider shape. For help and reference, visit our <video tutorials>.
+
+
+Once your TileSet is complete, head up to the Toolbar and select Scene > Convert To… > TileSet and Save to
+Graphics/Tilesets. We recommend you name your tileset ForestTileset.tres. BEFORE you select Save, make sure
+Merge With Existing in the bottom left-hand corner is turned off.
+
+
+Moving on, under FileSystems, select Scenes and create a new folder within Scenes called Levels.
+
+Create a new Scene, select 2D Scene, and rename the 2D node “LevelTemplate”. Save this new scene under the Levels
+folder you just created.
+
+
+The reason why the levels are Node2Ds, even though we won’t be moving around or levels in game, is because once we
+have our “Main” scene created, we will be placing each level of our game into a bigger container. If our levels are
+not Node2Ds, our Z Index will not work properly. 
+
+
+Z Index takes care of ‘layering’ objects. 
+Create a TileMap as a child of ‘LevelTemplate’. TileMaps are nodes that allow us to use tilesets. Re-name the TileMap
+to “Ground” and attach our ForestTileset.tres to “Ground” in the Inspector under Tile Set.
+
+Inside the Cell category within the Inspector, change the Size of x and y to match the resolution of our tiles,16x16;
+instead of 64x64. Remember to constantly save your progress.
+
+
+Along the Toolbar, open up ProjectSettings and scroll down to Layer Names> 2D Physics.
+Rename Layer 1 to “Environment”, Layer 2 to “Character”, Layer 3 to “Danger”, Layer 4 to “Interactables”. 
+
+If we close out of ProjectSettings and go back to “Ground”, in our Inspector underneath Collision, hit the dropdown icon
+and you will notice our Layer names are exactly as we named them. Since our Forest Tileset is part of our environment,
+we want our TileMap “Ground” to be a part of the layer Environment. 
+
+Just underneath Layer, you will see something similar called Mask. Mask is what each layer can collide/interact with. 
+
+
+Once everything is all set-up, in the Toolbar, select Scene > New Inherited Scene… 
+The only scene we have created is LevelTemplate, so inherit from LevelTemplate by double clicking. Once Inherited, rename
+LevelTemplate to Level_1. This is the first level in your game! Feel free to design and decorate your level however you
+would like! To create more and more levels to your game, keep Inheriting new scenes from LevelTemplate, and rename them
+Level_2 , 3, 4, and so on.
+
+
+
+
+PLAYER
+-----------------------
+Once Tilesets and Levels have been created, we need to create our Player. 
+Create a new scene, select OtherNode, and choose a KinematicBody2D. Rename the KinematicBody to Player and save it
+within the Scenes folder. Create a sprite node and CollisionShape2D as children of Player. Then create a regular Node,
+and TWO AudioStreamPlayer nodes all as children of Node. Rename the first AudioStreamPlayer to “RunSound”, and the second
+to “JumpSound”. Rename the Node that holds the AudioPlayers to “Sound”. After that, we recommend naming the sprite to
+“CharSprite” and CollisionShape2D to “BodyCollider”.
+
+Attach the spritesheet for CharSprite located under Graphics>Player>PlayerBasics.png. 
+Under the Import tab located right next to the spot Scene is located, make sure Texture Preset is set to 2D Pixel, and
+Reimport. Since this is a pixel art game, it's wise to “Set as Default” so all of your textures will be automatically
+set to 2D Pixel without having to worry.
+
+
+Move on to the CharSprite Inspector underneath the Animation tab, we want to change the V Frames and H Frames to 8 and
+7 respectfully. 
+
+
+Create an AnimationPlayer node under Player and rename it CharAnim. AnimationPlayers obviously hold all the animations
+for our player.
+
+Before we start making animations, we need to give our Player a Collision Shape. 
+Define our BodyCollider as a new Capsule shape. We want our capsule to be rather skinny and tall. For reference, the
+Players ‘Idle’ stance is located on frame number 25 if you want to get an accurate capsule shape.
+
+
+To make this Collision Shape work better, we need to tweak a few things in the Inspector. Select your Player KinematicBody
+node, and under Collision, change the Safe Margin to 0.2 . 
+
+Safe Margins are buffer zones for your collision shape. Setting our Margin to 0.2 will make it easier for the player to
+stick to ledges, instead of sliding off.
+
+Make sure to constantly save. 
+
+
+Now it is time to work on the Sprite Animations. Select CharAnim, and you will notice something pops up along the bottom
+of your screen. Right-click Animation and select New. We need to make a few animations. Create an “Idle” animation,
+“Run” animation, “Jump”, and “Fall”.
+
+Select Idle, and let's set specific frames off our character spritesheet to represent Idle animation.
+
+Start by Going back to CharSprite and selecting the Key icon next to Texture. Select the Key icon for your V and H
+Frames as well. Our Idle animation starts at frame 23, so scrub over to frame 23 and hit the Key icon. You'll notice
+that once you select the Key icon under Frames, that it automatically jumps to the next frame (frame 24), make sure to
+go back to frame 23 so we can modify some values before moving forward. Set Snap to 0.1 at the bottom of the Animation
+Player if it isn’t already. Once that is done, move your frame up to 24, Keyframe it, and repeat the process for frame
+25 and 26.
+
+
+Our Idle animation is only 0.3 seconds long, so we want to set the full duration of this animation to 0.3 as well so
+our character isn't frozen on frame 26 for 0.7 of a second until the animation loops. To do this, select the Timer icon
+near the top right corner, and change it’s value to 0.3 . To make sure our animation loops, click the loop icon right
+next to the timer. 
+You'll notice that your Idle animation is pretty fast if you click Play. To make it more realistic, we can slow down
+the speed of this animation by clicking CharAnim and changing the Speed under Playback Options to .5. Remember to
+Keyframe this!!
+
+
+Idle is done, moving on to “Run”. For help, visit our <Video Tutorial>.
+
+
+Select the Run animation and scrub the CharSprite frame to frame 45. Keyframe the Texture, V Frame, H Frame, and Frame
+numbers 45,46,47,49,50,51. We are skipping frame 48 because it is missing on the spritesheet, no big deal. 
+Enable the Loop icon, and set our duration timer to 0.6 next to that.
+Our Run animation is looking a little slow, because our Playback Speed is still at 0.5 from Idle. Bump the speed back
+up to 1 and Keyframe it. 
+Since our Sprint animation is the same as Run, just faster, Duplicate our Run animation and rename it to Sprint. The
+only changes we are making is changing the Playback speed to 1.3 instead of 1. 
+
+
+Change the animation to Jump and scrub the CharAnim over to frame 38. Keyframe everything over again (texture, V and
+H frames, etc). There are only 2 frames for jumping animations, frame 38 and 39. The rest are Falling animations.
+Set the duration to 0.2 and do not turn loop on. Keyframe the speed at 1 as well.
+
+Moving on to Fall, Scrub CharAnim to frame 17. Keyframe the basics again, and our falling animations are frames 17 and 18.
+Change the duration timer to 0.2 and do not turn loop on.
+
+
+Now that all our animations are set up, we need to make our Player interact with our world. 
+Select the Player node, and change its Collision Layer to “Character”. We also need to set our Mask to “Environment”
+so our player can walk on the ground.
+
+
+Next to the Inspector tab, you will see a tab called Node, select Node and move over to the Groups tab; add our player
+to a group called “Player”. Groups are like a tag, we are tagging our player with the label “Player”.
+
+
+TIME TO CODE
+---------------------------------------------
+Select the New Script icon next to scene, make sure the language is GD Script, it extends KinematicBody2D, and the
+template is Empty. The script name Player is fine. Make sure you save it to the Scripts folder. 
+Time to start coding. We will be setting up all the variables our player will need to interact with our game world.
+
+(insert images of code i have, talk about the code. Mostly Tony, raea and Jarod talking about what the code does. )
+
+
+
+
+  
+
+  
+
+**** 
+
+
+****Insert - Section on print statements
+
+
+PART 2 of player code
+----------------------------------------------
+Create a new AnimationPlayer in your player node tree, name it “PositionCorrectionAnim”. We are going to have two
+animations named “Right” and “Left”. Within Right, we are going to the CharSprite. In the Inspector under Offset,
+we are going to make sure Flip H is not enabled ( because we will be enabling Flip H for our Left animation.).
+We will set it’s length to .2 and Keyframe it by clicking the little Key icon next to Flip H. Repeat the same process
+for Left, but make sure the Flip H box is checked. Now our character looks to the left and the right. 
+
+
+In Level_Template, add a camera2D node as a child of player, and rename it to Cam
+Lets attach a script to Level_Template.
+
+**All images of Player code have been added to Help Me Breakdown This Code and Textbook_Images that I will use.
+At this point in the script, refer to these folders for what to put in the textbook.

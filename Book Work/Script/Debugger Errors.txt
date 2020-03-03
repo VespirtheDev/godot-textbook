@@ -1,0 +1,9 @@
+Common debugger errors: please explain down below and attach an image if possible to correlate with your error.
+
+****possibly need to explain null*****
+Null reference: happens when you are trying to set a value on a variable that is null,
+when your computer doesnt know what you're referencing. 
+
+Invalid Token: happens when you misplace tabs in functions. Whitespacing doesnt align properly. 
+
+Expectancy error: happens when the engine expects an end of statement with either a : ,missing parenthesis, or a comma. 
