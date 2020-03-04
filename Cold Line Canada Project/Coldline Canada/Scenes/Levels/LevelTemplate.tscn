@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/MainGame.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/WeaponPickup.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/JamPickup.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Graphics/Tiles/Map_Tileset.tres" type="TileSet" id=5]
+[ext_resource path="res://Scenes/NextLevel.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Graphics/Tiles/Stairs_Down.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=10]
+
+[node name="LevelTemplate" type="Node2D"]
+script = ExtResource( 1 )
+weapon_pickup = ExtResource( 2 )
+jam_pickup = ExtResource( 3 )
+
+[node name="Floor" type="TileMap" parent="."]
+tile_set = ExtResource( 5 )
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+cell_clip_uv = true
+format = 1
+
+[node name="Walls" type="TileMap" parent="."]
+tile_set = ExtResource( 5 )
+collision_layer = 4
+format = 1
+
+[node name="NextLevel" parent="." instance=ExtResource( 6 )]
+position = Vector2( 504.003, -94.1584 )
+
+[node name="SpawnPos" type="Sprite" parent="."]
+position = Vector2( 514.277, 557.134 )
+texture = ExtResource( 7 )
+
+[node name="Spawn" type="Position2D" parent="SpawnPos"]
+position = Vector2( 7.79205, 87.6609 )
+
+[node name="Player" parent="." instance=ExtResource( 8 )]
+position = Vector2( 521.701, 611.683 )
+scale = Vector2( 1, 1.00395 )
+movespeed = 6500.0
+max_health = 3
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+zoom = Vector2( 1.5, 1.5 )
+
+[node name="WeaponPickups" type="Node" parent="."]
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource( 10 )]
+position = Vector2( 247.187, 120.253 )
+movespeed = 3500.0
+max_health = 1
+root = NodePath("../..")
+point_value = 5
+drop_chances = {
+"Jam": 0,
+"ScatterIcer": 75,
+"SweetPewPew": 25,
+"Weapon": 100
+}
+
+[node name="JamPickups" type="Node" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+autoplay = true
+[connection signal="next_level" from="NextLevel" to="." method="next_level"]
+[connection signal="player_dead" from="Player" to="." method="game_over"]
+[connection signal="spawn_weapon" from="Enemies/Enemy" to="." method="spawn_weapon_pickup"]

@@ -1,0 +1,70 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Menus/Title.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Levels/Vanilla1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Levels/Chocolate1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Levels/Chocolate2.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Graphics/UI/Reload_Progress.png" type="Texture" id=6]
+[ext_resource path="res://Audio/Music/Famitracker_VRC7_-_Donkey_Kong_Country_2_-_Stickerbrush_Symphony-8uv7R8XOkOw.wav" type="AudioStream" id=7]
+[ext_resource path="res://Audio/SFX/Menu_Cursor.wav" type="AudioStream" id=8]
+[ext_resource path="res://Audio/SFX/Menu_Confirm.wav" type="AudioStream" id=9]
+[ext_resource path="res://Audio/SFX/Start_LEvel.wav" type="AudioStream" id=10]
+[ext_resource path="res://Audio/SFX/Game_over.wav" type="AudioStream" id=11]
+
+[sub_resource type="Animation" id=1]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("TransitionAnim/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8, 1.6, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 0.0627451, 0.0627451, 0.0627451, 1 ), Color( 0.0627451, 0.0627451, 0.0627451, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 1 )
+level_list = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ) ]
+
+[node name="Title" parent="." instance=ExtResource( 2 )]
+
+[node name="Levels" type="Node2D" parent="."]
+
+[node name="TransitionAnim" type="AnimationPlayer" parent="."]
+playback_speed = 0.8
+anims/next_level = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="TransitionAnim"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 534.47, 329.915 )
+scale = Vector2( 33.368, 137.772 )
+texture = ExtResource( 6 )
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="TitleMusic" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 7 )
+volume_db = -12.0
+autoplay = true
+
+[node name="MenuCursor" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 8 )
+volume_db = -20.0
+
+[node name="MenuSelect" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 9 )
+volume_db = -15.0
+
+[node name="NewLevel" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 10 )
+volume_db = -10.0
+
+[node name="GameOver" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 11 )
+volume_db = -10.0
+[connection signal="start_game" from="Title" to="." method="start_game"]

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Menu_Cursor.wav-0f6fe056b4985ae9109f787a6851c43c.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/Menu_Cursor.wav"
+dest_files=[ "res://.import/Menu_Cursor.wav-0f6fe056b4985ae9109f787a6851c43c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

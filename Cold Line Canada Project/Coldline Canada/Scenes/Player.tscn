@@ -1,0 +1,126 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Scenes/Character.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/WeaponInfo.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Projectile.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Audio/SFX/Player_Run.wav" type="AudioStream" id=8]
+[ext_resource path="res://Audio/SFX/Player_Roll.wav" type="AudioStream" id=9]
+[ext_resource path="res://Audio/SFX/Player_Hurt.wav" type="AudioStream" id=10]
+[ext_resource path="res://Audio/SFX/Player_Attack.wav" type="AudioStream" id=11]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10.6064, 6.26757 )
+
+[sub_resource type="Animation" id=2]
+length = 0.1
+
+[sub_resource type="Animation" id=3]
+resource_name = "Hurt"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("CharSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.298039, 0.298039, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.1
+
+[sub_resource type="Animation" id=5]
+
+[sub_resource type="Animation" id=6]
+resource_name = "Run"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7, 4, 5, 6, 7 ]
+}
+
+[node name="Player" groups=[
+"Player",
+] instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+movespeed = 5000.0
+
+[node name="BodyCollider" parent="." index="1"]
+position = Vector2( 2.17986, 2.3814 )
+
+[node name="HitBox" parent="." index="4" groups=[
+"Player",
+]]
+
+[node name="AreaCollider" parent="HitBox" index="0"]
+position = Vector2( 1.16258, 1.16258 )
+shape = SubResource( 1 )
+
+[node name="BulletSpawnPos" parent="." index="5"]
+position = Vector2( 47.1957, 7.964 )
+
+[node name="CharAnim" type="AnimationPlayer" parent="." index="6"]
+playback_speed = 0.9
+anims/Dead = SubResource( 2 )
+anims/Hurt = SubResource( 3 )
+anims/Idle = SubResource( 4 )
+anims/Roll = SubResource( 5 )
+anims/Run = SubResource( 6 )
+
+[node name="Sounds" type="Node2D" parent="." index="7"]
+
+[node name="Run" type="AudioStreamPlayer" parent="Sounds" index="0"]
+stream = ExtResource( 8 )
+volume_db = -20.0
+
+[node name="Roll" type="AudioStreamPlayer" parent="Sounds" index="1"]
+stream = ExtResource( 9 )
+volume_db = -20.0
+
+[node name="Hurt" type="AudioStreamPlayer" parent="Sounds" index="2"]
+stream = ExtResource( 10 )
+volume_db = -5.0
+pitch_scale = 1.62
+
+[node name="Attack" type="AudioStreamPlayer" parent="Sounds" index="3"]
+stream = ExtResource( 11 )
+volume_db = -5.0
+pitch_scale = 0.92
+
+[node name="StepSoundTimer" type="Timer" parent="." index="8"]
+wait_time = 0.3
+
+[node name="Weapon" type="Node" parent="." index="9"]
+script = ExtResource( 3 )
+projectile_tscn = ExtResource( 4 )
+
+[node name="ReloadTimer" type="Timer" parent="Weapon" index="0"]
+one_shot = true
+
+[node name="FireRateTimer" type="Timer" parent="Weapon" index="1"]
+one_shot = true
+
+[node name="BulletContainer" type="Node" parent="Weapon" index="2"]
+
+[node name="PlayerCam" type="Camera2D" parent="." index="10"]
+current = true
+[connection signal="update_score" from="." to="." method="update_score"]
+[connection signal="timeout" from="AttackCooldown" to="." method="reloaded"]
+[connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
+[connection signal="timeout" from="StepSoundTimer" to="." method="_on_StepSoundTimer_timeout"]
+[connection signal="timeout" from="Weapon/ReloadTimer" to="Weapon" method="reload"]
+[connection signal="timeout" from="Weapon/FireRateTimer" to="Weapon" method="fire_rate_over"]
