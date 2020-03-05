@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/AttackLight.wav-8f5605420467e970c66aeb8ec5d411a7.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/AttackLight.wav"
+dest_files=[ "res://.import/AttackLight.wav-8f5605420467e970c66aeb8ec5d411a7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

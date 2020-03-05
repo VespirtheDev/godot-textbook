@@ -1,0 +1,373 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Scripts/EnemyCore.gd" type="Script" id=1]
+[ext_resource path="res://Graphics/Player/PlayerBasics.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/Player/PlayerSword.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 21.0342, 21.1525 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 147.902, 53.4579 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 35.74, 18.328 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 35.74, 18.328 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 35.5462, 18.328 )
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 20.3923, 21.3991 )
+
+[sub_resource type="Animation" id=13]
+tracks/0/type = "value"
+tracks/0/path = NodePath("DamageArea/AreaCollider:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AttackRange/AreaCollider:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("DamageWarningArea/AreaCollider:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:vframes")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprite:hframes")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sprite:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15, 16, 17 ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerDetection/AreaCollider:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.270588, 0, 0, 1 ), Color( 0.0705882, 0.0705882, 0.0705882, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Idle"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 28, 29, 30, 31 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Move"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 45, 46, 47, 49, 50, 51 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.0705882, 0.0705882, 0.0705882, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("AttackRange/AreaCollider:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[node name="EnemyCore" type="KinematicBody2D"]
+collision_layer = 4
+script = ExtResource( 1 )
+health_max = 5
+gravity = 100.0
+move_speed = 50.0
+jump_speed = 100.0
+can_jump = true
+knockback_duration = 0.2
+knockback_power = 10.0
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+position = Vector2( 2.59911, 1.4715 )
+texture = ExtResource( 2 )
+vframes = 8
+hframes = 7
+frame = 13
+
+[node name="GroundDetection" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 30, 1 )
+enabled = true
+cast_to = Vector2( 0, 100 )
+
+[node name="WallDetection" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 0, 12.5172 )
+enabled = true
+cast_to = Vector2( 35, 0 )
+
+[node name="Path" type="Node" parent="."]
+
+[node name="BodyCollider" type="CollisionShape2D" parent="."]
+position = Vector2( 1.13205, -2.26412 )
+shape = SubResource( 1 )
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="AreaCollider" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2( 11.173, -14.45 )
+shape = SubResource( 2 )
+
+[node name="AttackRange" type="Area2D" parent="."]
+visible = false
+position = Vector2( -14.2302, -2.32454 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="AreaCollider" type="CollisionShape2D" parent="AttackRange"]
+shape = SubResource( 3 )
+disabled = true
+
+[node name="DamageArea" type="Area2D" parent="."]
+visible = false
+position = Vector2( -14.2302, -2.32454 )
+collision_layer = 0
+collision_mask = 16
+
+[node name="AreaCollider" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource( 4 )
+disabled = true
+
+[node name="DamageWarningArea" type="Area2D" parent="."]
+visible = false
+position = Vector2( -14.2302, -2.32454 )
+collision_layer = 4
+collision_mask = 0
+
+[node name="AreaCollider" type="CollisionShape2D" parent="DamageWarningArea"]
+shape = SubResource( 11 )
+
+[node name="HitboxArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 16
+collision_mask = 0
+
+[node name="AreaCollider" type="CollisionShape2D" parent="HitboxArea"]
+position = Vector2( 1.03825, -2.73587 )
+shape = SubResource( 12 )
+
+[node name="CharAnim" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
+anims/Attack = SubResource( 13 )
+anims/Hurt = SubResource( 8 )
+anims/Idle = SubResource( 10 )
+anims/Move = SubResource( 9 )
+
+[node name="KnockbackTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="InjuryStreakTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="BackstepDuration" type="Timer" parent="."]
+wait_time = 0.5
+[connection signal="body_entered" from="PlayerDetection" to="." method="player_in_range"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="player_out_of_range"]
+[connection signal="area_entered" from="DamageArea" to="." method="attack_connected"]
+[connection signal="animation_finished" from="CharAnim" to="." method="_on_CharAnim_animation_finished"]
+[connection signal="timeout" from="KnockbackTimer" to="." method="end_knockback"]
+[connection signal="timeout" from="InjuryStreakTimer" to="." method="reset_injury_streak"]
+[connection signal="timeout" from="BackstepDuration" to="." method="end_backstep"]

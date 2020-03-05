@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Locations_Happy Village (loop).wav-ccb5e5d5275174c2ace5a2d8a0b7718f.sample"
+
+[deps]
+
+source_file="res://Audio/Music/Locations_Happy Village (loop).wav"
+dest_files=[ "res://.import/Locations_Happy Village (loop).wav-ccb5e5d5275174c2ace5a2d8a0b7718f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

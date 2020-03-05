@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Locations_House (loop).wav-b192f82bf47cb1f81c9b138a2b6a65c9.sample"
+
+[deps]
+
+source_file="res://Audio/Music/Locations_House (loop).wav"
+dest_files=[ "res://.import/Locations_House (loop).wav-b192f82bf47cb1f81c9b138a2b6a65c9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

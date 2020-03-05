@@ -1,0 +1,128 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Graphics/HUD/Scroll.png" type="Texture" id=1]
+[ext_resource path="res://Graphics/Fonts/MainFont.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Graphics/HUD/Buttons/ButtonPressed.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/HUD/Buttons/ButtonHover.png" type="Texture" id=4]
+[ext_resource path="res://Graphics/HUD/Buttons/ButtonNormal.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Menus/SubMenus/AudioOptions.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Menus/SubMenus/ControllerOptions.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/Options.gd" type="Script" id=8]
+
+[sub_resource type="DynamicFont" id=6]
+size = 38
+outline_size = 2
+outline_color = Color( 0.196078, 0.196078, 0.196078, 1 )
+font_data = ExtResource( 2 )
+
+[node name="Options" type="Control"]
+anchor_right = 0.452
+anchor_bottom = 0.522
+margin_right = 0.151978
+margin_bottom = -0.200012
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackgroundSprite" type="Sprite" parent="."]
+scale = Vector2( 2.29456, 1.27938 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="MainOptions" type="VBoxContainer" parent="."]
+margin_left = 70.0047
+margin_top = 68.7187
+margin_right = 326.005
+margin_bottom = 460.719
+rect_scale = Vector2( 0.3, 0.3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ControllerPref" type="TextureButton" parent="MainOptions"]
+margin_right = 256.0
+margin_bottom = 128.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Label" type="Label" parent="MainOptions/ControllerPref"]
+margin_left = 38.2896
+margin_top = 36.7923
+margin_right = 205.29
+margin_bottom = 83.7923
+custom_fonts/font = SubResource( 6 )
+text = "Controller"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Audio" type="TextureButton" parent="MainOptions"]
+margin_top = 132.0
+margin_right = 256.0
+margin_bottom = 260.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Label" type="Label" parent="MainOptions/Audio"]
+margin_left = 76.0
+margin_top = 37.0
+margin_right = 201.0
+margin_bottom = 84.0
+custom_fonts/font = SubResource( 6 )
+text = "Audio"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Back" type="TextureButton" parent="MainOptions"]
+margin_top = 264.0
+margin_right = 256.0
+margin_bottom = 392.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Label" type="Label" parent="MainOptions/Back"]
+margin_left = 83.0
+margin_top = 36.0
+margin_right = 191.0
+margin_bottom = 83.0
+custom_fonts/font = SubResource( 6 )
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="AudioOptions" parent="." instance=ExtResource( 6 )]
+visible = false
+anchor_right = 0.17
+anchor_bottom = 0.368
+margin_left = 261.633
+margin_top = 71.9145
+margin_right = 261.383
+margin_bottom = 72.0825
+
+[node name="ControllerOptions" parent="." instance=ExtResource( 7 )]
+visible = false
+margin_left = 264.655
+margin_top = 94.4275
+margin_right = -360.345
+margin_bottom = -304.572
+[connection signal="pressed" from="MainOptions/ControllerPref" to="." method="_on_ControllerPref_pressed"]
+[connection signal="pressed" from="MainOptions/Audio" to="." method="_on_Audio_pressed"]
+[connection signal="pressed" from="MainOptions/Back" to="." method="_on_Back_pressed"]

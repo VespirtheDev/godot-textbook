@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Collectible.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 2.84707, 2.74344 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Death"
+
+[node name="CollectArea" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 1 )
+type = "Health"
+textures = {
+"DiamondCoin": null,
+"GoldCoin": null,
+"Health": null,
+"Mana": null,
+"SilverCoin": null,
+"Stamina": null
+}
+
+[node name="AreaCollider" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+anims/Death = SubResource( 2 )
+[connection signal="body_entered" from="." to="." method="collected"]

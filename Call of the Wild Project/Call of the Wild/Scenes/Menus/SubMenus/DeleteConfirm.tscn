@@ -1,0 +1,113 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Graphics/Fonts/MainFont.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Graphics/HUD/Buttons/ButtonHover.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/HUD/Buttons/ButtonNormal.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/HUD/Buttons/ButtonPressed.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/DeleteConfirm.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=2]
+size = 19
+outline_size = 3
+outline_color = Color( 0.172549, 0.172549, 0.172549, 1 )
+font_data = ExtResource( 1 )
+
+[node name="DeleteConfirm" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -807.0
+margin_bottom = -484.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 217.0
+margin_bottom = 116.0
+color = Color( 0.462745, 0.435294, 0.321569, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ButtonBox" type="HBoxContainer" parent="."]
+margin_left = 7.07883
+margin_top = 65.1061
+margin_right = 523.079
+margin_bottom = 193.106
+rect_scale = Vector2( 0.4, 0.35 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Confirm" type="TextureButton" parent="ButtonBox"]
+margin_right = 256.0
+margin_bottom = 128.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Cancel" type="TextureButton" parent="ButtonBox"]
+margin_left = 260.0
+margin_right = 516.0
+margin_bottom = 128.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="MessageLabel" type="Label" parent="."]
+margin_left = 6.86011
+margin_top = 1.67082
+margin_right = 214.86
+margin_bottom = 79.6708
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Are you sure you want to delete this save?"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="ConfirmLabel" type="Label" parent="."]
+margin_left = -46.877
+margin_top = 73.3202
+margin_right = 161.123
+margin_bottom = 151.32
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Confirm
+"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="CancelLabel" type="Label" parent="."]
+margin_left = 57.2801
+margin_top = 73.9836
+margin_right = 265.28
+margin_bottom = 151.984
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Cancel"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+[connection signal="pressed" from="ButtonBox/Confirm" to="." method="_on_Confirm_pressed"]
+[connection signal="pressed" from="ButtonBox/Cancel" to="." method="_on_Cancel_pressed"]
