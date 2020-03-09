@@ -1,0 +1,148 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Menus/Title.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Levels/Level_01.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Levels/Level_02.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Graphics/Fonts/MainFont.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Graphics/HUD/TransitionSquare.png" type="Texture" id=6]
+[ext_resource path="res://Audio/SFX/FileSave.wav" type="AudioStream" id=7]
+[ext_resource path="res://Scenes/Levels/Credits.tscn" type="PackedScene" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 26
+outline_size = 3
+outline_color = Color( 0.262745, 0.262745, 0.262745, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "CompleteFade"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Transition/FadeSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/Transition/FadeSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0470588, 0.0470588, 0.0470588, 0 ), Color( 0.0470588, 0.0470588, 0.0470588, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 6.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Transition/FadeSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 4, 5.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0470588, 0.0470588, 0.0470588, 1 ), Color( 0.0470588, 0.0470588, 0.0470588, 1 ), Color( 0.0470588, 0.0470588, 0.0470588, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/Transition/LevelNameLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 4, 5.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Fade_Out_Level"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Transition/FadeSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0470588, 0.0470588, 0.0470588, 1 ), Color( 0.0470588, 0.0470588, 0.0470588, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Transition/FadeSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.3, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0470588, 0.0470588, 0.0470588, 0 ), Color( 0.0470588, 0.0470588, 0.0470588, 1 ) ]
+}
+
+[node name="Main" type="Node"]
+script = ExtResource( 1 )
+level_list = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 8 ) ]
+
+[node name="Title" parent="." instance=ExtResource( 2 )]
+
+[node name="LevelContainer" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Transition" type="Control" parent="CanvasLayer"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FadeSprite" type="Sprite" parent="CanvasLayer/Transition"]
+modulate = Color( 0.0470588, 0.0470588, 0.0470588, 1 )
+position = Vector2( 509.577, 325.149 )
+scale = Vector2( 11.2525, 9.01938 )
+texture = ExtResource( 6 )
+
+[node name="LevelNameLabel" type="Label" parent="CanvasLayer/Transition"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 418.453
+margin_top = 246.94
+margin_right = 581.453
+margin_bottom = 278.94
+custom_fonts/font = SubResource( 1 )
+text = "LEVEL NAME"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TransitionAnim" type="AnimationPlayer" parent="."]
+pause_mode = 2
+anims/CompleteFade = SubResource( 2 )
+anims/Fade_In_Level = SubResource( 3 )
+anims/Fade_Out_Level = SubResource( 4 )
+anims/Title_Fade = SubResource( 5 )
+
+[node name="SaveSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -5.0
+bus = "SFX"

@@ -1,0 +1,309 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Graphics/Fonts/MainFont.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Graphics/Environment/middleground.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/HUD/TransitionSquare.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/Environment/background.png" type="Texture" id=4]
+[ext_resource path="res://Audio/Music/GameOver.wav" type="AudioStream" id=5]
+[ext_resource path="res://Graphics/Tilesets/ForestTilesExperimental.tres" type="TileSet" id=6]
+[ext_resource path="res://Graphics/Tilesets/ForestTiles.tres" type="TileSet" id=7]
+[ext_resource path="res://Scripts/LevelTemplate.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Menus/HUD.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Graphics/Player/PlayerBasics.png" type="Texture" id=12]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 1 )
+
+[sub_resource type="Environment" id=2]
+background_mode = 4
+adjustment_enabled = true
+
+[sub_resource type="Animation" id=3]
+resource_name = "Parry_Mode_Toggle"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("WorldEnvironment:environment:adjustment_saturation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.7 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "AttackConnected"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CharCam:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 3, 0 ), Vector2( 0, 0 ), Vector2( -3, 0 ) ]
+}
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0.542857, 1 )
+colors = PoolColorArray( 0.415421, 0.831107, 0.966797, 1, 0.617188, 0.959625, 1, 0 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+emission_shape = 2
+emission_box_extents = Vector3( 50, 2, 1 )
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 10.0
+initial_velocity_random = 0.62
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 97.1
+angle_random = 1.0
+scale = 5.0
+scale_random = 1.0
+color_ramp = SubResource( 6 )
+
+[sub_resource type="Animation" id=8]
+length = 100.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Interface/GameOver/TransitionSquare:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0352941, 0.0352941, 0.0352941, 0 ), Color( 0.0352941, 0.0352941, 0.0352941, 1 ), Color( 0.0352941, 0.0352941, 0.0352941, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Interface/GameOver/DeathLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1, 1.5, 3, 3.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player/CharCam:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.5, 1.5 ), Vector2( 0.5, 0.5 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 10.0756, 798.727 )
+
+[node name="LevelTemplate" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="Interface" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="Interface" instance=ExtResource( 10 )]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Interface"]
+
+[node name="Back" type="ParallaxLayer" parent="Interface/ParallaxBackground"]
+motion_mirroring = Vector2( 383.91, 0 )
+
+[node name="background" type="Sprite" parent="Interface/ParallaxBackground/Back"]
+position = Vector2( -52.716, 287.807 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
+
+[node name="background2" type="Sprite" parent="Interface/ParallaxBackground/Back"]
+position = Vector2( 713.284, 287.807 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
+
+[node name="background3" type="Sprite" parent="Interface/ParallaxBackground/Back"]
+position = Vector2( 1483.28, 287.807 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
+
+[node name="Front" type="ParallaxLayer" parent="Interface/ParallaxBackground"]
+motion_mirroring = Vector2( 575, 0 )
+
+[node name="middleground" type="Sprite" parent="Interface/ParallaxBackground/Front"]
+position = Vector2( 288.996, 287.807 )
+scale = Vector2( 1.5, 2 )
+texture = ExtResource( 2 )
+
+[node name="middleground2" type="Sprite" parent="Interface/ParallaxBackground/Front"]
+position = Vector2( 1441, 287.807 )
+scale = Vector2( 1.5, 2 )
+texture = ExtResource( 2 )
+
+[node name="GameOver" type="Control" parent="Interface"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TransitionSquare" type="Sprite" parent="Interface/GameOver"]
+modulate = Color( 0.0352941, 0.0352941, 0.0352941, 0 )
+position = Vector2( 1150.69, 147.851 )
+scale = Vector2( 20.8462, 12.4344 )
+texture = ExtResource( 3 )
+
+[node name="DeathLabel" type="Label" parent="Interface/GameOver"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 163.744
+margin_top = 195.162
+margin_right = 867.744
+margin_bottom = 320.162
+custom_fonts/font = SubResource( 1 )
+text = "You DIED
+Will you perservere or surrender?"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackgroundTiles" type="TileMap" parent="."]
+modulate = Color( 0.419608, 0.419608, 0.419608, 1 )
+position = Vector2( 955.048, 179.637 )
+tile_set = ExtResource( 7 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+
+[node name="WallRun" type="TileMap" parent="."]
+position = Vector2( 953.065, 192.464 )
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 8
+collision_mask = 0
+format = 1
+
+[node name="Ground" type="TileMap" parent="."]
+position = Vector2( 955.048, 179.637 )
+tile_set = ExtResource( 7 )
+cell_size = Vector2( 16, 16 )
+collision_mask = 0
+format = 1
+
+[node name="Ladders" type="Node" parent="."]
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Checkpoints" type="Node" parent="."]
+
+[node name="SpawnPoint" type="Position2D" parent="Checkpoints"]
+
+[node name="PlayerGuideSprite" type="Sprite" parent="Checkpoints/SpawnPoint"]
+modulate = Color( 1, 1, 1, 0.662745 )
+texture = ExtResource( 12 )
+flip_h = true
+vframes = 8
+hframes = 7
+frame = 25
+
+[node name="Player" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1172.62, 305.755 )
+z_index = 1
+climb_speed = 10.0
+attack_library = {
+"Slash1": {
+"Damage": 1.0,
+"KnockbackDuration": 0.5,
+"KnockbackPower": Vector2( 5, 0 )
+},
+"Slash2": {
+"Damage": 1.0,
+"KnockbackDuration": 0.5,
+"KnockbackPower": Vector2( 5, 0 )
+},
+"Slash3": {
+"Damage": 2.0,
+"KnockbackDuration": 0.0,
+"KnockbackPower": Vector2( 0, 0 )
+}
+}
+combo_library = {
+[ "Slash1", "Slash1" ]: "Slash2",
+[ "Slash1", "Slash2", "Slash1" ]: "Slash3"
+}
+
+[node name="CharCam" type="Camera2D" parent="Player"]
+current = true
+zoom = Vector2( 1.5, 1.5 )
+
+[node name="CamTween" type="Tween" parent="Player/CharCam"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Player/CharCam"]
+environment = SubResource( 2 )
+
+[node name="EffectAnim" type="AnimationPlayer" parent="Player/CharCam"]
+anims/Parry_Mode_Toggle = SubResource( 3 )
+
+[node name="CamAnim" type="AnimationPlayer" parent="Player"]
+anims/AttackConnected = SubResource( 4 )
+
+[node name="EndGoal" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="AreaCollider" type="CollisionShape2D" parent="EndGoal"]
+
+[node name="EndLevelParticles" type="Particles2D" parent="EndGoal"]
+amount = 50
+randomness = 0.52
+process_material = SubResource( 7 )
+
+[node name="LevelMusic" type="AudioStreamPlayer" parent="."]
+bus = "Music"
+
+[node name="DeathMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -5.0
+bus = "Music"
+
+[node name="GameAnim" type="AnimationPlayer" parent="."]
+anims/Death = SubResource( 8 )
+anims/EnterLevel = SubResource( 9 )
+
+[node name="LeftCamRestraint" type="Position2D" parent="."]
+
+[node name="RightCamRestraint" type="Position2D" parent="."]
+
+[node name="SkyCamRestraint" type="Position2D" parent="."]
+
+[node name="Borders" type="StaticBody2D" parent="."]
+
+[node name="RightBorderColider" type="CollisionShape2D" parent="Borders"]
+position = Vector2( 1050, 0 )
+shape = SubResource( 10 )
+
+[node name="LeftBorderCollider" type="CollisionShape2D" parent="Borders"]
+shape = SubResource( 10 )
+[connection signal="player_died" from="Player" to="." method="player_died"]
+[connection signal="update_health" from="Player" to="Interface/HUD" method="update_health"]
+[connection signal="update_stamina" from="Player" to="Interface/HUD" method="update_stamina"]
+[connection signal="body_entered" from="EndGoal" to="." method="end_goal_entered"]

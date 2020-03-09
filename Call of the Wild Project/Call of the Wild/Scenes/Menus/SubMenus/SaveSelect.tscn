@@ -1,0 +1,387 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Graphics/Fonts/MainFont.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Graphics/HUD/Buttons/ButtonHover.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/HUD/Buttons/ButtonNormal.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/HUD/Buttons/ButtonPressed.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Menus/SubMenus/DeleteConfirm.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/SaveSelect.gd" type="Script" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 17
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 28
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "DeleteMenu"
+tracks/0/type = "value"
+tracks/0/path = NodePath("DeleteConfirm:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="SaveSelect" type="Control"]
+anchor_left = 0.001
+anchor_right = 0.555
+anchor_bottom = 0.407
+margin_left = -0.024
+margin_right = -0.320007
+margin_bottom = -0.199997
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveOptions" type="HBoxContainer" parent="."]
+anchor_right = 0.5
+anchor_bottom = 0.514
+margin_left = 283.657
+margin_top = 23.2687
+margin_right = 745.657
+margin_bottom = 223.323
+rect_scale = Vector2( 0.5, 0.5 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="SaveBox" type="VBoxContainer" parent="SaveOptions"]
+margin_right = 256.0
+margin_bottom = 400.0
+custom_constants/separation = 8
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Slot1" type="TextureButton" parent="SaveOptions/SaveBox"]
+margin_right = 256.0
+margin_bottom = 128.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Slot1_Info" type="Control" parent="SaveOptions/SaveBox/Slot1"]
+anchor_left = 0.165
+anchor_top = -0.293
+anchor_right = 0.487
+anchor_bottom = -0.091
+margin_left = -21.24
+margin_top = 53.504
+margin_right = -21.198
+margin_bottom = 53.62
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="SlotNumberLabel" type="Label" parent="SaveOptions/SaveBox/Slot1/Slot1_Info"]
+margin_left = 5.0
+margin_top = 2.0
+margin_right = 20.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.176471, 0.698039, 0.6, 1 )
+text = "1"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="TimeLabel" type="Label" parent="SaveOptions/SaveBox/Slot1/Slot1_Info"]
+margin_left = 30.0
+margin_top = 2.0
+margin_right = 116.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "00:00:00"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="LevelNameLabel" type="Label" parent="SaveOptions/SaveBox/Slot1/Slot1_Info"]
+margin_left = 5.0
+margin_top = 24.0
+margin_right = 200.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Level"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Slot2" type="TextureButton" parent="SaveOptions/SaveBox"]
+margin_top = 136.0
+margin_right = 256.0
+margin_bottom = 264.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Slot2_Info" type="Control" parent="SaveOptions/SaveBox/Slot2"]
+anchor_left = 0.162
+anchor_top = -0.017
+anchor_right = 0.488
+anchor_bottom = 0.169
+margin_left = -24.472
+margin_top = 16.176
+margin_right = -24.386
+margin_bottom = 16.164
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="SlotNumberLabel" type="Label" parent="SaveOptions/SaveBox/Slot2/Slot2_Info"]
+margin_left = 5.0
+margin_top = 2.0
+margin_right = 20.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.176471, 0.698039, 0.6, 1 )
+text = "2"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="TimeLabel" type="Label" parent="SaveOptions/SaveBox/Slot2/Slot2_Info"]
+margin_left = 30.0
+margin_top = 2.0
+margin_right = 116.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "00:00:00"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="LevelNameLabel" type="Label" parent="SaveOptions/SaveBox/Slot2/Slot2_Info"]
+margin_left = 5.0
+margin_top = 24.0
+margin_right = 200.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Level"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Slot3" type="TextureButton" parent="SaveOptions/SaveBox"]
+margin_top = 272.0
+margin_right = 256.0
+margin_bottom = 400.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Slot3_Info" type="Control" parent="SaveOptions/SaveBox/Slot3"]
+anchor_left = 0.16
+anchor_top = 0.264
+anchor_right = 0.487
+anchor_bottom = 0.455
+margin_left = -27.96
+margin_top = -19.792
+margin_right = -27.613
+margin_bottom = -20.014
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="SlotNumberLabel" type="Label" parent="SaveOptions/SaveBox/Slot3/Slot3_Info"]
+margin_left = 5.0
+margin_top = 2.0
+margin_right = 20.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.176471, 0.698039, 0.6, 1 )
+text = "3"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="TimeLabel" type="Label" parent="SaveOptions/SaveBox/Slot3/Slot3_Info"]
+margin_left = 30.0
+margin_top = 2.0
+margin_right = 116.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "00:00:00"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="LevelNameLabel" type="Label" parent="SaveOptions/SaveBox/Slot3/Slot3_Info"]
+margin_left = 5.0
+margin_top = 24.0
+margin_right = 200.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Level"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="DeleteBox" type="VBoxContainer" parent="SaveOptions"]
+margin_left = 260.0
+margin_right = 516.0
+margin_bottom = 400.0
+
+[node name="Delete1" type="TextureButton" parent="SaveOptions/DeleteBox"]
+margin_right = 256.0
+margin_bottom = 128.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 2 )
+
+[node name="DeleteLabel" type="Label" parent="SaveOptions/DeleteBox/Delete1"]
+margin_left = 70.0
+margin_top = 30.0
+margin_right = 180.0
+margin_bottom = 105.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Delete
+Save"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Delete2" type="TextureButton" parent="SaveOptions/DeleteBox"]
+margin_top = 132.0
+margin_right = 256.0
+margin_bottom = 260.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 2 )
+
+[node name="DeleteLabel" type="Label" parent="SaveOptions/DeleteBox/Delete2"]
+margin_left = 70.0
+margin_top = 30.0
+margin_right = 180.0
+margin_bottom = 105.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Delete
+Save"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Delete3" type="TextureButton" parent="SaveOptions/DeleteBox"]
+margin_top = 264.0
+margin_right = 256.0
+margin_bottom = 392.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 2 )
+
+[node name="DeleteLabel" type="Label" parent="SaveOptions/DeleteBox/Delete3"]
+margin_left = 70.0
+margin_top = 30.0
+margin_right = 180.0
+margin_bottom = 105.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Delete
+Save"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="DeleteConfirm" parent="." instance=ExtResource( 5 )]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 0.377
+anchor_bottom = 0.457
+margin_left = 31.025
+margin_top = 66.482
+margin_right = 31.25
+margin_bottom = 66.576
+
+[node name="DeleteAnimation" type="AnimationPlayer" parent="."]
+anims/DeleteMenu = SubResource( 3 )
+
+[node name="Back" type="TextureButton" parent="."]
+margin_left = 363.435
+margin_top = 221.895
+margin_right = 619.435
+margin_bottom = 349.895
+rect_scale = Vector2( 0.4, 0.4 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="DeleteLabel2" type="Label" parent="Back"]
+margin_left = 70.0
+margin_top = 30.0
+margin_right = 180.0
+margin_bottom = 105.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Back"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+[connection signal="pressed" from="SaveOptions/SaveBox/Slot1" to="." method="saveSelect" binds= [ 0 ]]
+[connection signal="pressed" from="SaveOptions/SaveBox/Slot2" to="." method="saveSelect" binds= [ 1 ]]
+[connection signal="pressed" from="SaveOptions/SaveBox/Slot3" to="." method="saveSelect" binds= [ 2 ]]
+[connection signal="pressed" from="SaveOptions/DeleteBox/Delete1" to="." method="startDelete" binds= [ 1 ]]
+[connection signal="pressed" from="SaveOptions/DeleteBox/Delete2" to="." method="startDelete" binds= [ 2 ]]
+[connection signal="pressed" from="SaveOptions/DeleteBox/Delete3" to="." method="startDelete" binds= [ 3 ]]
+[connection signal="cancel" from="DeleteConfirm" to="." method="deletionCanceled"]
+[connection signal="confirm" from="DeleteConfirm" to="." method="deletionConfirmed"]
+[connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]

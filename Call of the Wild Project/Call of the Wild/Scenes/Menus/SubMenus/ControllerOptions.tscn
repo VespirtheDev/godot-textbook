@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Graphics/Fonts/MainFont.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Graphics/HUD/Buttons/ButtonPressed.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/HUD/Buttons/ButtonHover.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/HUD/Buttons/ButtonNormal.png" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=6]
+size = 38
+outline_size = 2
+outline_color = Color( 0.196078, 0.196078, 0.196078, 1 )
+font_data = ExtResource( 1 )
+
+[node name="ControllerOptions" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -896.0
+margin_bottom = -466.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ControllerBox" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.25, 0.25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Xbox" type="TextureButton" parent="ControllerBox"]
+margin_right = 256.0
+margin_bottom = 128.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 3 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Label" type="Label" parent="ControllerBox/Xbox"]
+margin_left = 77.0
+margin_top = 38.0
+margin_right = 182.0
+margin_bottom = 85.0
+custom_fonts/font = SubResource( 6 )
+text = "Xbox"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Playstation" type="TextureButton" parent="ControllerBox"]
+margin_top = 132.0
+margin_right = 256.0
+margin_bottom = 260.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 3 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Label" type="Label" parent="ControllerBox/Playstation"]
+margin_left = 38.2896
+margin_top = 36.7923
+margin_right = 205.29
+margin_bottom = 83.7923
+custom_fonts/font = SubResource( 6 )
+text = "Playstation"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}

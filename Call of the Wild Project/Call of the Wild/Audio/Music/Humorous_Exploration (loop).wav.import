@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Humorous_Exploration (loop).wav-a2afd2976a376c510cbee9482678afeb.sample"
+
+[deps]
+
+source_file="res://Audio/Music/Humorous_Exploration (loop).wav"
+dest_files=[ "res://.import/Humorous_Exploration (loop).wav-a2afd2976a376c510cbee9482678afeb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,146 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Enemies/EnemyCore.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/BasicEnemy.gd" type="Script" id=2]
+[ext_resource path="res://Graphics/Player/PlayerSword.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Left"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("AttackRange:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -14.3038, -2.32454 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DamageArea:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -14.2302, -2.32454 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("DamageWarningArea:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -14.2302, -2.32454 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Right"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("AttackRange:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 16.3729, -1.32454 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DamageArea:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 17.1287, -1.7975 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("DamageWarningArea:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 17.1287, -1.7975 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[node name="BasicEnemy" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+health_max = 10
+gravity = 500.0
+idle_time = 3.0
+can_jump = false
+damage = 5
+backstep_speed = 70.0
+knockback_duration = 0.0
+knockback_power = 0.0
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2( 3.45349, -3.79714 )
+scale = Vector2( 1.3, 1.3 )
+texture = ExtResource( 3 )
+flip_h = true
+vframes = 6
+hframes = 6
+frame = 13
+
+[node name="AttackRange" parent="." index="6"]
+visible = true
+position = Vector2( -14.3038, -2.32454 )
+
+[node name="AreaCollider" parent="AttackRange" index="0"]
+position = Vector2( 3, 0 )
+
+[node name="DamageArea" parent="." index="7"]
+collision_layer = 4
+
+[node name="BackstepDuration" parent="." index="13"]
+wait_time = 1.5
+
+[node name="PositionCorrectionAnim" type="AnimationPlayer" parent="." index="14"]
+anims/Left = SubResource( 1 )
+anims/Right = SubResource( 2 )

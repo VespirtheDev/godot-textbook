@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/LevelMusic_WithTheWind.wav-846be878b4438ce357530f2a2d923e4e.sample"
+
+[deps]
+
+source_file="res://Audio/Music/LevelMusic_WithTheWind.wav"
+dest_files=[ "res://.import/LevelMusic_WithTheWind.wav-846be878b4438ce357530f2a2d923e4e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

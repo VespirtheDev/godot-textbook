@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Graphics/Environment/tileset.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Ladder.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10, 18.1156 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8.58152, 0.925571 )
+
+[node name="Ladder" type="Area2D" groups=[
+"Climbable",
+]]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0.492264, 13.2716 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 48, 0, 16, 32 )
+
+[node name="AreaCollider" type="CollisionShape2D" parent="."]
+position = Vector2( 1.06749, 14.0484 )
+shape = SubResource( 3 )
+
+[node name="StepBody" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="TopCollider" type="CollisionShape2D" parent="StepBody"]
+position = Vector2( 0.795521, -2.08825 )
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="MiddleCollider" type="CollisionShape2D" parent="StepBody"]
+position = Vector2( 0.795521, 13.9118 )
+shape = SubResource( 2 )
+one_way_collision = true
+[connection signal="body_entered" from="." to="." method="player_detected"]
+[connection signal="body_exited" from="." to="." method="player_left"]
