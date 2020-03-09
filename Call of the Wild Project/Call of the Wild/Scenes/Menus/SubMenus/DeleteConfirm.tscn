@@ -6,7 +6,7 @@
 [ext_resource path="res://Graphics/HUD/Buttons/ButtonPressed.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/DeleteConfirm.gd" type="Script" id=5]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 19
 outline_size = 3
 outline_color = Color( 0.172549, 0.172549, 0.172549, 1 )
@@ -68,7 +68,7 @@ margin_left = 6.86011
 margin_top = 1.67082
 margin_right = 214.86
 margin_bottom = 79.6708
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Are you sure you want to delete this save?"
 align = 1
@@ -83,7 +83,7 @@ margin_left = -46.877
 margin_top = 73.3202
 margin_right = 161.123
 margin_bottom = 151.32
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Confirm
 "
@@ -99,7 +99,7 @@ margin_left = 57.2801
 margin_top = 73.9836
 margin_right = 265.28
 margin_bottom = 151.984
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Cancel"
 align = 1

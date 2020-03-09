@@ -54,19 +54,16 @@ func playSave(option):
 	match option:
 		0: #Selected Save 1
 			SaveData.save_slot = 1
-			SaveData.save_game()
 			$UIAnim.play("Complete_Fade")
 			yield($UIAnim, "animation_finished")
 			root.set_game_state("Game")
 		1: #Selected Save 2
 			SaveData.save_slot = 2
-			SaveData.save_game()
 			$UIAnim.play("Complete_Fade")
 			yield($UIAnim, "animation_finished")
 			root.set_game_state("Game")
 		2: #Selected Save 3
 			SaveData.save_slot = 3
-			SaveData.save_game()
 			$UIAnim.play("Complete_Fade")
 			yield($UIAnim, "animation_finished")
 			root.set_game_state("Game")

@@ -512,6 +512,9 @@ text = "+"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="player_died" from="Player" to="." method="player_died"]
+[connection signal="update_health" from="Player" to="Interface/HUD" method="update_health"]
+[connection signal="update_stamina" from="Player" to="Interface/HUD" method="update_stamina"]
 [connection signal="body_entered" from="TutorialPrompts/JumpPrompt/PlayerDetection" to="TutorialPrompts/JumpPrompt" method="player_detected"]
 [connection signal="body_exited" from="TutorialPrompts/JumpPrompt/PlayerDetection" to="TutorialPrompts/JumpPrompt" method="player_left"]
 [connection signal="body_entered" from="TutorialPrompts/SlidePrompt/PlayerDetection" to="TutorialPrompts/SlidePrompt" method="player_detected"]

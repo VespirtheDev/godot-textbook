@@ -60,6 +60,8 @@ func load_level(level):
 	
 	$LevelContainer.add_child(level_tscn) #Add the level to the main scene
 	$CanvasLayer/Transition/LevelNameLabel.text = $LevelContainer.get_child(0).level_name #Set the level name text
+	SaveData.save_dict["Save%s" % SaveData.save_slot].LevelName = $LevelContainer.get_child(0).level_name
+	SaveData.save_game()
 	$TransitionAnim.play("Fade_In_Level") #Play the fade in level transition animation
 	level_tscn.get_node("GameAnim").play("EnterLevel") #We get the level's GameAnim node to play the EnterLevel animation
 	
@@ -77,7 +79,7 @@ func level_finished():
 	#Making a variable for the save slot the player is using just makes the function
 	#Look less chaotic (What this is doing is explained in the set_game_state function)
 	var save_slot = SaveData.save_dict["Save%s" % SaveData.save_slot]
-	save_slot.Checkpoint = 0 #Set the save's checkpoint to 0 since the level with the checkpoints is finished
+	System.currentCP = 0 #Set the save's checkpoint to 0 since the level with the checkpoints is finished
 	save_slot.CurrentLevel += 1 #Increase current level in save slot to progress the player to the next level
 	
 	#If the current level is the size of the level_list
@@ -87,7 +89,7 @@ func level_finished():
 		$TransitionAnim.play("CompleteFade") #Play the complete fade animation
 		
 		#Updates the save information
-		SaveData.update_save()
+		SaveData.save_game()
 		
 		#Wait for the transition animation to finish
 		yield($TransitionAnim, "animation_finished")
@@ -102,7 +104,7 @@ func level_finished():
 	$SaveSound.play() #Play the save sound
 	current_lvl = save_slot.CurrentLevel #Update current level in the save slot
 	
-	SaveData.update_save() #Update and save the game (More details in the function)
+	SaveData.save_game() #Update and save the game (More details in the function)
 	
 	load_level(current_lvl) #Loads the current level
 

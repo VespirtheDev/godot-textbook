@@ -4,23 +4,26 @@ export (String) var level_name = "" #The name of the level to be displayed
 onready var root = get_parent().get_parent() #The Main tscn
 var level_finished = false #Tracks to see if the level has been finished
 var player_dead = false #Tracks to see if the player is dead or not. Mainly used so the game doesn't spam the dead function
+var CPoints = []
 
 func _ready():
 	if self.has_node("ControlManager"):
 		$ControlManager.update_controls()
 	
-	SaveData.save_dict["Save%s" % SaveData.save_slot].LevelName = level_name #Set the current level's name in the save slot
-	$Player.setup() #Setup the player scene
-#	$Player.global_position = $Checkpoints.get_child(SaveData.save_dict["Save%s" % SaveData.save_slot].Checkpoint).global_position #Move the player to the spawn position
-	$Player.set_physics_process(false) #Stop the player from moving
-	$GameAnim.play("EnterLevel")
-	
-	#For each checkpoint in the level
+		#For each checkpoint in the level
 	$Checkpoints/SpawnPoint/PlayerGuideSprite.hide()
 	for checkpoint in $Checkpoints.get_children():
 		if checkpoint.has_method("triggered"): #Make sure it's a checkpoint
 			checkpoint.connect("checkpoint_triggered", self, "checkpoint_triggered") #Connect the triggered signal to this script
 			checkpoint.get_node("PlayerGuideSprite").hide()
+	addCPoints()
+	
+	$Player.setup() #Setup the player scene
+	$Player.global_position = CPoints[System.currentCP].global_position
+	$Player.set_physics_process(false) #Stop the player from moving
+	$GameAnim.play("EnterLevel")
+	
+
 	
 	setup_camera_limits() #Sets the camera limits for all directions
 	yield($GameAnim, "animation_finished")
@@ -32,6 +35,11 @@ func _input(_event):
 	#If the control manager is a valid instance update the controls it has.
 	if self.has_node("ControlManager"):
 		$ControlManager.update_controls()
+
+func addCPoints():
+	for i in $Checkpoints.get_child_count():
+		CPoints.append($Checkpoints.get_child(i))
+		
 
 #This will setup the camera limits automatically
 func setup_camera_limits():
@@ -78,7 +86,7 @@ func player_died():
 #This function updates the checkpoint once it's triggered
 func checkpoint_triggered(order):
 	#If the order is greater than the current checkpoint then set it to the new checkpoint order
-	if order > SaveData.save_dict["Save%s" % SaveData.save_slot].Checkpoint:
-		SaveData.save_dict["Save%s" % SaveData.save_slot].Checkpoint = order
+	if order > System.currentCP:
+		System.currentCP = order
 
 

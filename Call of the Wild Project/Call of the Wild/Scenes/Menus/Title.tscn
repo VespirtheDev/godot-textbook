@@ -19,7 +19,7 @@ outline_size = 4
 outline_color = Color( 0.2, 0.2, 0.2, 1 )
 font_data = ExtResource( 4 )
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=2]
 tracks/0/type = "value"
 tracks/0/path = NodePath("SaveSelect:modulate")
 tracks/0/interp = 1
@@ -33,7 +33,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath("MenuOptions:modulate")
 tracks/0/interp = 1
@@ -71,7 +71,7 @@ tracks/2/keys = {
 "values": [ Vector2( -600, 315.578 ), Vector2( 70, 315.578 ) ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=4]
 tracks/0/type = "value"
 tracks/0/path = NodePath("SaveSelect:modulate")
 tracks/0/interp = 1
@@ -85,7 +85,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Options:rect_scale")
 tracks/0/interp = 1
@@ -98,8 +98,20 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1e-05 ), Vector2( 1, 1 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("MenuOptions:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 335.79, 523.158 ), Vector2( 335.79, 650 ) ]
+}
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=6]
 length = 30.0
 step = 0.001
 tracks/0/type = "value"
@@ -328,14 +340,14 @@ volume_db = -15.0
 bus = "SFX"
 
 [node name="UIAnim" type="AnimationPlayer" parent="."]
-anims/Complete_Fade = SubResource( 13 )
-anims/Main_to_Save = SubResource( 14 )
-anims/Save_Fade = SubResource( 15 )
-anims/Title_to_Options = SubResource( 16 )
+anims/Complete_Fade = SubResource( 2 )
+anims/Main_to_Save = SubResource( 3 )
+anims/Save_Fade = SubResource( 4 )
+anims/Title_to_Options = SubResource( 5 )
 
 [node name="TitleAnim" type="AnimationPlayer" parent="."]
 autoplay = "TitleAnimation"
-anims/TitleAnimation = SubResource( 17 )
+anims/TitleAnimation = SubResource( 6 )
 
 [node name="MenuOptions" parent="." instance=ExtResource( 18 )]
 margin_left = 335.79

@@ -4,19 +4,15 @@ const SAVE_PATH = "user://save.json" #This is the file path
 
 #This is the save dictionary that holds all of the saved info
 var save_dict = {
-					"Save1": {"CurrentLevel": 0},
-					"Save2": {"CurrentLevel": 0},
-					"Save3": {"CurrentLevel": 0}
+					"Save1": {"CurrentLevel": 0,"LevelName":"Forest of Light"},
+					"Save2": {"CurrentLevel": 0,"LevelName":"Forest of Light"},
+					"Save3": {"CurrentLevel": 0,"LevelName":"Forest of Light"}
 				}
 
-var blank_slot = {"CurrentLevel": 0}
+var blank_slot = {"CurrentLevel": 0,"LevelName":"Forest of Light"}
 
 var current_level = 0
 var save_slot = 1
-
-#This updates the save slot and the writes the saves to the file
-func update_save():
-	save_game()
 
 #This writes the save file
 func save_game():
@@ -45,5 +41,5 @@ func load_game():
 
 func delete_save(slot):
 	save_dict["Save%s" % str(slot+1)] = blank_slot
-	update_save()
+	save_game()
 

@@ -7,6 +7,8 @@ var master_audio_volume = 0.0
 var sfx_audio_volume = 0.0
 var music_audio_volume = 0.0
 
+var currentCP = 0
+
 func _input(event):
 	#If the input was from a mouse
 	if event is InputEventMouseMotion or event is InputEventMouseButton:
