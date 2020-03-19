@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/FCM7_Castlevania_-_Cross_Your_Heart_Crucifix_Held_Close_VRC6_Mimic-UYGCGp50M24.wav-e51d19a2588280ec89343bd421c5693c.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/FCM7_Castlevania_-_Cross_Your_Heart_Crucifix_Held_Close_VRC6_Mimic-UYGCGp50M24.wav"
+dest_files=[ "res://.import/FCM7_Castlevania_-_Cross_Your_Heart_Crucifix_Held_Close_VRC6_Mimic-UYGCGp50M24.wav-e51d19a2588280ec89343bd421c5693c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

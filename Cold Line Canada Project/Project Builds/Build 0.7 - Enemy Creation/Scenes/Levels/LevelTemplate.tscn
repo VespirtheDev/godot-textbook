@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Characters/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Graphics/Tilesets/MainTiles.tres" type="TileSet" id=2]
+[ext_resource path="res://Graphics/Tilesets/Props.tres" type="TileSet" id=3]
+[ext_resource path="res://Scripts/Level.gd" type="Script" id=4]
+
+[node name="LevelTemplate" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Ground" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+
+[node name="Decor" type="TileMap" parent="."]
+scale = Vector2( 3, 3 )
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 1048635, 0, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 632.762, 74.3652 )
+
+[node name="WeaponPickups" type="Node" parent="."]
+
+[node name="Enemies" type="Node2D" parent="."]
